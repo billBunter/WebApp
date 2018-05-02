@@ -1,0 +1,115 @@
+@media screen {
+    body{
+        background-color: powderblue;
+    }
+
+    h1{
+        font-family: Verdana;
+    }
+    h2{
+        font-family: Arial;
+    }
+    p{
+        font-family: Calibri;
+    }
+
+    ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 300px;
+        background-color: aliceblue;
+    }
+
+    li a{
+        font-family: Calibri;
+        font-size: x-large;
+        display: block;
+        color: black;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover {
+        background-color: darkslategrey;
+        color: white;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    logo{
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    .naviBar{
+        position: fixed;
+        top: 105px;
+        left: 0px;
+    }
+
+    content{
+        position: fixed;
+        top: 90px;
+        left: 305px;
+    }
+}
+
+@media print {
+    logo{
+        position: fixed;
+        top: 0px;
+        right: 0px;
+    }
+
+   .naviBar {
+       display: none;
+   }
+
+    content{
+        font-family: Calibri;
+    }
+
+    h1{
+        font-size: large;
+    }
+
+    h2{
+        font-size: medium;
+    }
+
+    p{
+        font-size: small;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+}

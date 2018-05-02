@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Punktekonten">
+        <meta name="keywords" content="FHV, studenten, oesterreich, vorarlberg">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="William Dunand">
+        <style>
+            ul{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 300px;
+                background-color: aliceblue;
+            }
+
+            li a{
+                font-family: Calibri;
+                display: block;
+                color: black;
+                padding: 8px 16px;
+                text-decoration: none;
+            }
+
+            li a:hover {
+                background-color: darkslategrey;
+                color: white;
+            }
+        </style>
+        <script src="CookieCreater.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <title>Start Seite</title>
+    </head>
+    <body onload="createCookie('biscuit','home.html')" style="background-color: powderblue">
+
+        <a href="index.html"><img src="logo.jpg" title="Logo der FHV" alt="Logo der FHV" width="380" height="85"></a>
+        <ul style="font-size: x-large">
+            <li style="font-family: Calibri"><a href="Controller?redirect=english">English</a> </li>
+            <li style="font-family: Calibri"><a href="Controller?redirect=webapplicationen">Webapplikationen</a> </li>
+<!--            <li style="font-family: Calibri"><a href="formular.html">Neue ID erstellen</a> </li>-->
+<!--            <li style="font-family: Calibri"><a href="gaesterBuch.html">Zum Gästebuch</a> </li>-->
+<!--            <li style="font-family: Calibri"><a href="popupUe.html">Popup Übung</a> </li>-->
+<!--            <li style="font-family: Calibri"><a href="guestBookForm.jsp">Gästebuch</a> </li>-->
+
+            <li style="font-family: Calibri"><a href="index.html">Und noch viel mehr ...</a> </li>
+        </ul>
+
+    </body>
+</html>
