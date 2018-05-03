@@ -30,7 +30,14 @@ public class EvaluationController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         AccountController accController = AccountController.getInstanz();
-        accController.addToHistory(request.getParameter("redirect"));
+        if (accController.getAccount() == null) {
+            //muss erst noch angemeldet werden
+        } else if (accController.getAccount().getRechte().equals("student")) {
+            //weiterleiten zur evaluierungsform
+            accController.addToHistory(request.getParameter("redirect") + ".html");
+        } else {
+            //weiterleiten zur auswertung
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
