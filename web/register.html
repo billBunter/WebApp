@@ -11,13 +11,17 @@
     </head>
     <body>
         <h1>create your new account here!</h1>
-        <form action="RegisterServlet" method="POST">
+        <form action="RegistrationServlet" method="POST">
             Userid:
             <input type="text" name="userid"><br>
             Password:
             <input type="password" name="passwd"><br>
             Confirm Password:
-            <input type="password" name="confpasswd">
+            <input type="password" name="confpasswd"><br>
+            Student: 
+            <input type="radio" name="rechte" value="student" checked><br>
+            Dozent: 
+            <input type="radio" name="rechte" value="dozent"><br>
             <input type="submit" value="Register"><br>
         </form>
         <p>Go <a href="index.html">back</a> to Mainpage</p>

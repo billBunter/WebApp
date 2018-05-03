@@ -13,19 +13,47 @@ import guestbook.pojo.Account;
  */
 public class AccountController {
     
+    private static AccountController instance;
     private Account account;
-    private boolean existiert = false;
+    private SessionManager sessionManager;
     
-    protected AccountController(){
-        existiert = true;
+    private AccountController(){
     }
     
-    public AccountController getAccountController(){
-        if (existiert){
-            return this;
-        } else {
-            return new AccountController();
+    public static AccountController getInstanz(){
+        if (AccountController.instance == null){
+            AccountController.instance = new AccountController();
         }
+        return AccountController.instance;
+    }
+    
+    public boolean isRegistered(){
+        if (account != null){
+            return true;
+        }
+        return false;
+    }
+    
+    public String getRights(){
+        return account.getRechte();
+    }
+    
+    public void setAccount(Account acc){
+        sessionManager = new SessionManager();
+        account = acc;
+    }
+    
+    public void loggOff(){
+        sessionManager = null;
+        account = null;
+    }
+    
+    public Account getAccount(){
+        return account;
+    }
+    
+    public void addToHistory(String url){
+        sessionManager.addToHistory(url);
     }
     
 }

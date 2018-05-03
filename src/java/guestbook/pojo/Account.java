@@ -1,5 +1,5 @@
 package guestbook.pojo;
-// Generated 25.04.2018 15:15:23 by Hibernate Tools 4.3.1
+// Generated 02.05.2018 17:59:15 by Hibernate Tools 4.3.1
 
 
 
@@ -12,6 +12,7 @@ public class Account  implements java.io.Serializable {
      private Integer id;
      private String userid;
      private String passwd;
+     private String rechte;
 
     public Account() {
     }
@@ -20,9 +21,10 @@ public class Account  implements java.io.Serializable {
     public Account(String userid) {
         this.userid = userid;
     }
-    public Account(String userid, String passwd) {
+    public Account(String userid, String passwd, String rechte) {
        this.userid = userid;
        this.passwd = passwd;
+       this.rechte = rechte;
     }
    
     public Integer getId() {
@@ -45,6 +47,13 @@ public class Account  implements java.io.Serializable {
     
     public void setPasswd(String passwd) {
         this.passwd = passwd;
+    }
+    public String getRechte() {
+        return this.rechte;
+    }
+    
+    public void setRechte(String rechte) {
+        this.rechte = rechte;
     }
 
 

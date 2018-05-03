@@ -16,9 +16,9 @@
         <p>Go <a href="index.html">back</a> to Mainpage</p>
         <form action="Controller" method="POST">
             UserId:
-            <input type="text" name="userId"><br>
+            <input type="text" name="userId" value="wdu"><br>
             Password:
-            <input type="password" name="passwd"><br>
+            <input type="password" name="passwd" value="1234"><br>
             <input type="submit" value="Submit"><br>
         </form>
         <p>If you don not have a account yet you can create one <a href="register.html">here</a></p>

@@ -17,6 +17,14 @@
         <servlet-name>SetSessionConroller</servlet-name>
         <servlet-class>guestbook.StartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <servlet-class>guestbook.RegistrationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HistoryServlet</servlet-name>
+        <servlet-class>guestbook.HistoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -28,6 +36,14 @@
     <servlet-mapping>
         <servlet-name>SetSessionConroller</servlet-name>
         <url-pattern>/SetSessionConroller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrationServlet</servlet-name>
+        <url-pattern>/RegistrationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HistoryServlet</servlet-name>
+        <url-pattern>/HistoryServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

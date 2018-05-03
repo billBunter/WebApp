@@ -5,9 +5,11 @@
  */
 package guestbook;
 
+import guestbook.helper.AccountHelper;
+import guestbook.pojo.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -25,8 +27,7 @@ import javax.servlet.http.HttpSession;
  */
 public class Controller extends HttpServlet {
 
-    private LinkedList<String> sessions = new LinkedList<>();
-
+    //private LinkedList<String> sessions = new LinkedList<>();
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,29 +40,72 @@ public class Controller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+        String redirect = request.getParameter("redirect");
+        AccountController accController = AccountController.getInstanz();
+        
         if (request.getParameter("userId") == null) {
-            ServletContext servletContext = getServletContext();
-            String redirect = request.getParameter("redirect");
-
+            //kommt vom index.html
             if (redirect == null) {
                 redirect = "home.html";
+                return;
             } else {
                 if (redirect.equals("webapplicationen") || redirect.equals("english")) {
-                    if (!isLogedOn(session.getId())) {
+                    if (!accController.isRegistered()) {
                         response.sendRedirect("logon.jsp");
                         return;
                     } else {
-                        executeRedirect(servletContext, redirect, request, response);
+                        accController.addToHistory(redirect);
+                        response.sendRedirect(redirect + ".html");
                         return;
                     }
+                } else if (redirect.equals("loggoff")) {
+                    if (accController.getAccount() == null) {
+                        response.sendRedirect("logon.jsp");
+                        return;
+                    } else {
+                        accController.loggOff();
+                        sendAlert("Sie sind jetzt abgemeldet!", response);
+                        response.sendRedirect("index.html");
+                        return;
+                    }
+                } else if (redirect.equals("history")){
+                    accController.addToHistory(redirect);
+                    response.sendRedirect(redirect + ".html");
                 }
             }
         } else {
+            //kommt von logon.jsp
             String userid = request.getParameter("userId");
             String passwd = request.getParameter("passwd");
-            sessions.add(session.getId());
-            response.sendRedirect("home.html");
+
+            AccountHelper accHelper = new AccountHelper();
+            List<Account> accs = accHelper.getByUserid(userid);
+            if (accs.size() < 1) {
+                //nicht registriet
+                response.sendRedirect("register.html");
+            } else if (accs.size() == 1) {
+                accController.setAccount(accs.get(0));
+                if (redirect != null) {
+                    response.sendRedirect(redirect + ".html");
+                } else {
+                    response.sendRedirect("index.html");
+                }
+            } else {
+                String alert = "Hoppala das ist wohl was schief gelaufen!!";
+                sendAlert(alert, response);
+            }
+
+        }
+    }
+
+    private void sendAlert(String alert, HttpServletResponse response) {
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<script type=\"text/javascript\">");
+            out.println("alert('"+ alert +"');");
+            out.println("location='index.html';");
+            out.println("</script>");
+        } catch (IOException e){
+            e.printStackTrace();
         }
     }
 
@@ -104,24 +148,5 @@ public class Controller extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private boolean isLogedOn(String sessionID) {
-        boolean returnBoolean = false;
-        for (int i = 0; i < sessions.size(); i++) {
-            if (sessionID.equals(sessions.get(i))) {
-                returnBoolean = true;
-            }
-        }
-        return returnBoolean;
-    }
-
-    private void executeRedirect(ServletContext sc, String path, HttpServletRequest request, HttpServletResponse response) {
-        try {
-            RequestDispatcher dispatcher = sc.getRequestDispatcher("/" + path + ".html");
-            dispatcher.forward(request, response);
-        } catch (ServletException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
 }

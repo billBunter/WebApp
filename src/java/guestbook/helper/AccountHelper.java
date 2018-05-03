@@ -23,12 +23,12 @@ public class AccountHelper {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
-    public List<Account> getByName(String userName) {
+    public List<Account> getByUserid(String userid) {
         List<Account> accList = null;
         try {
             //org.hibernate.Transaction tx = session.beginTransaction();
             session = HibernateUtil.getSessionFactory().openSession();
-            Query q = session.createQuery("from Account where userid = '" + userName + "'");
+            Query q = session.createQuery("from Account where userid = '" + userid + "'");
             accList = q.list();
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,11 +36,11 @@ public class AccountHelper {
         return accList;
     }
 
-    public boolean insertEntry(String userid, String passwd) {
-        List<Account> possibleCollision = getByName(userid);
+    public boolean insertEntry(String userid, String passwd, String rechte) {
+        List<Account> possibleCollision = getByUserid(userid);
         if (possibleCollision.isEmpty()) {
             session.beginTransaction();
-            Account acc = new Account(userid, passwd);
+            Account acc = new Account(userid, passwd, rechte);
             session.save(acc);
             session.getTransaction().commit();
             return true;
