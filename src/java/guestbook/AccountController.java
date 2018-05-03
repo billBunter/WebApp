@@ -6,6 +6,7 @@
 package guestbook;
 
 import guestbook.pojo.Account;
+import java.util.List;
 
 /**
  *
@@ -54,6 +55,10 @@ public class AccountController {
     
     public void addToHistory(String url){
         sessionManager.addToHistory(url);
+    }
+    
+    public List<String> getHistory(){
+        return sessionManager.getHistory();
     }
     
 }

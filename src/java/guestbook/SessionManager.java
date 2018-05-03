@@ -32,5 +32,9 @@ public class SessionManager {
         history.add(time + ";" + url);
     }
     
+    public List<String> getHistory(){
+        return history;
+    }
+    
     
 }

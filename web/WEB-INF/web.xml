@@ -25,6 +25,10 @@
         <servlet-name>HistoryServlet</servlet-name>
         <servlet-class>guestbook.HistoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EvaluationController</servlet-name>
+        <servlet-class>guestbook.EvaluationController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -44,6 +48,10 @@
     <servlet-mapping>
         <servlet-name>HistoryServlet</servlet-name>
         <url-pattern>/HistoryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EvaluationController</servlet-name>
+        <url-pattern>/EvaluationController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

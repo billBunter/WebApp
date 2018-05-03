@@ -7,8 +7,6 @@ package guestbook;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedList;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Billy
  */
-public class HistoryServlet extends HttpServlet {
+public class EvaluationController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,41 +29,8 @@ public class HistoryServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         AccountController accController = AccountController.getInstanz();
-
-        if (accController.getAccount() == null) {
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<script type=\"text/javascript\">");
-                out.println("alert('You are not Registered');");
-                out.println("location='index.html';");
-                out.println("</script>");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            response.sendRedirect("index.html");
-        } else {
-            response.setContentType("text/html;charset=UTF-8");
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>History</title>");
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Your History</h1>");
-                out.println("<p>get back to Index <a href='index.html'>here</a></p><br>");
-                out.println("<table> <tr> <th>Time</th> <th>URL</th> </tr>");
-                List<String> history = accController.getHistory();
-                for (String str : history) {
-                    String[] strArr = str.split(";");
-                    out.println("<tr><td>" + strArr[0] + "</td><td>" + strArr[1] + "</td></tr>");
-                }
-                out.println("</table>");
-                out.println("</body>");
-                out.println("</html>");
-            }
-        }
+        accController.addToHistory(request.getParameter("redirect"));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

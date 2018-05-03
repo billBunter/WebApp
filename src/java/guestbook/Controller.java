@@ -44,10 +44,13 @@ public class Controller extends HttpServlet {
         AccountController accController = AccountController.getInstanz();
         
         if (request.getParameter("userId") == null) {
-            //kommt vom index.html
+            //kommt nicht vom Login
             if (redirect == null) {
                 redirect = "home.html";
                 return;
+            } else if(redirect.equals("index")){
+                accController.addToHistory(redirect);
+                response.sendRedirect(redirect+".html");
             } else {
                 if (redirect.equals("webapplicationen") || redirect.equals("english")) {
                     if (!accController.isRegistered()) {
