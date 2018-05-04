@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div>
+        <div align="center">
             <h1>Evaluation Form</h1>
             <form action="EvaluationController" method="POST">
                 Select the Course: <br>
@@ -20,7 +20,7 @@ and open the template in the editor.
                     <option value="webApp">Webapplication</option>
                 </select><br>
                 Wenn Sie sich auf den Inhalt konzentrieren, wie <br>
-                lohnend war der Besuch der Lehrveranstaltung bisher?<br>
+                lohnend war der Besuch der Lehrveranstaltung bis her?<br>
                 (1 überhaupt nicht 5 lohnt sich sehr)<br>
                 <input type="radio" name="lohntSich" value="one">1
                 <input type="radio" name="lohntSich" value="two">2
@@ -30,7 +30,8 @@ and open the template in the editor.
                 Welche platfrom haben sie für die übungen verwendet?<br>
                 <input type="checkbox" name="platform" value="nb">NetBeans<br>
                 <input type="checkbox" name="platform" value="ij">Intellij<br>
-                <textarea name="beibehalten" rows="5" cols="25">Was soll beibehalten werden?</textarea>
+                <br><textarea name="beibehalten" rows="5" cols="25">Was soll beibehalten werden?</textarea><br>
+                <input type="submit" value="Submit">
             </form>
         </div>
     </body>

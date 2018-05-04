@@ -30,13 +30,27 @@ public class EvaluationController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         AccountController accController = AccountController.getInstanz();
-        if (accController.getAccount() == null) {
-            //muss erst noch angemeldet werden
-        } else if (accController.getAccount().getRechte().equals("student")) {
-            //weiterleiten zur evaluierungsform
-            accController.addToHistory(request.getParameter("redirect") + ".html");
+
+        if (accController.getAccount() != null) {
+            String redirect = request.getParameter("redirect");
+            String rechte = accController.getAccount().getRechte();
+            accController.addToHistory("Evaluation");
+            if (rechte.equals("student")) {
+                //weiterleiten zur evaluierungsform
+                response.sendRedirect(redirect + ".html");
+            } else {
+                //zu Auswertung weiterleiten
+            }
         } else {
-            //weiterleiten zur auswertung
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Sie sind noch nicht angemeldt!');");
+                out.println("location='logon.jsp';");
+                out.println("</script>");
+                response.sendRedirect("logon.jsp");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -66,6 +80,14 @@ public class EvaluationController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //Evaluirung auf korrektheit prüfen!!
+        String kurs = request.getParameter("kurs");
+        String lohntSich = request.getParameter("lohntSich");
+        String platform = request.getParameter("platform");
+        String beibehalten = request.getParameter("beibehalten");
+        
+        
+        
         processRequest(request, response);
     }
 
