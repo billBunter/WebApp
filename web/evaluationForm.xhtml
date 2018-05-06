@@ -16,30 +16,39 @@ and open the template in the editor.
         <div align="center">
             <h1>Evaluation Form</h1>
             <h:form>
-                Select the Course: <br />
-                <h:selectOneMenu value="#{evaluationBean.kurs}">
-                    <option value="english">English</option>
-                    <option value="webApp">Webapplication</option>
+                <h:outputLabel for="kurs">Select the Course: </h:outputLabel>
+                <br />
+                <h:selectOneMenu id="kurs" value="#{evaluationBean.kurs}">
+                    <f:selectItem itemValue="english"  itemLabel="English"/>
+                    <f:selectItem itemValue="webApp" itemLabel="Webapplication"/>
                 </h:selectOneMenu><br />
-                Wenn Sie sich auf den Inhalt konzentrieren, wie <br />
-                lohnend war der Besuch der Lehrveranstaltung bis her?<br />
-                (1 überhaupt nicht 5 lohnt sich sehr)<br />
-                <h:selectOneRadio value="#{evaluationBean.lohntSich}">
+                <h:outputLabel for="lohntSich">
+                    Wenn Sie sich auf den Inhalt konzentrieren, wie <br />
+                    lohnend war der Besuch der Lehrveranstaltung bis her?<br />
+                    (1 überhaupt nicht 5 lohnt sich sehr)<br />
+                </h:outputLabel>
+                <h:selectOneRadio id="lohntSich" value="#{evaluationBean.lohntSich}">
                     <f:selectItem  itemValue="one" itemLabel="1" />
                     <f:selectItem  itemValue="two" itemLabel="2" />
                     <f:selectItem  itemValue="three" itemLabel="3" />
                     <f:selectItem  itemValue="four" itemLabel="4" />
                     <f:selectItem  itemValue="five" itemLabel="5" />
                 </h:selectOneRadio>
-                Welche platfrom haben sie für die übungen verwendet?<br />
-                <h:selectManyCheckbox value="#{evaluationBean.platform}">
+                <h:outputLabel for="platform">Welche platfrom haben sie für die übungen verwendet?</h:outputLabel>
+                <br />
+                <h:selectManyCheckbox id="platform" value="#{evaluationBean.platform}">
                     <f:selectItem itemValue="nb" itemLabel="NetBeans" />
                     <f:selectItem itemValue="ij" itemLabel="Intellij" />
                 </h:selectManyCheckbox>
                 <br />
-                Was soll beibehalten werden?
+                <h:outputLabel for="beibehalten"> Was soll beibehalten werden?</h:outputLabel>
                 <br />
-                <h:inputTextarea value="#{evaluationBean.beibehalten}" cols="30" rows="5"/>                
+                <h:inputTextarea id="beibehalten" value="#{evaluationBean.beibehalten}" cols="30" rows="5"/> 
+                <br />
+                <h:commandButton value="Submit">
+                    <f:ajax execute="@form" render="@all"
+                            listener="#{evaluationBean.validate()}" />
+                </h:commandButton>
             </h:form>
         </div>
     </h:body>

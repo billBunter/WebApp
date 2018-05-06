@@ -53,6 +53,10 @@
         <servlet-name>EvaluationController</servlet-name>
         <url-pattern>/EvaluationController</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -37,7 +37,7 @@ public class EvaluationController extends HttpServlet {
             accController.addToHistory("Evaluation");
             if (rechte.equals("student")) {
                 //weiterleiten zur evaluierungsform
-                response.sendRedirect(redirect + ".html");
+                response.sendRedirect(redirect + ".xhtml");
             } else {
                 //zu Auswertung weiterleiten
             }

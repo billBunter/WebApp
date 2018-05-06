@@ -5,19 +5,22 @@
  */
 package guestbook;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.validator.FacesValidator;
 
 /**
  *
  * @author Billy
  */
-@ManagedBean(name = "evaluationBean", eager = true)
-@RequestScoped
-public class EvaluationBean {
-    
+@ManagedBean(name = "evaluationBean")
+@SessionScoped
+public class EvaluationBean implements Serializable {
+
     private String beibehalten;
-    private String platform;
+    private String[] platform;
     private String lohntSich;
     private String kurs;
 
@@ -35,11 +38,11 @@ public class EvaluationBean {
         this.beibehalten = beibehalten;
     }
 
-    public String getPlatform() {
+    public String[] getPlatform() {
         return platform;
     }
 
-    public void setPlatform(String platform) {
+    public void setPlatform(String[] platform) {
         this.platform = platform;
     }
 
@@ -58,6 +61,12 @@ public class EvaluationBean {
     public void setKurs(String kurs) {
         this.kurs = kurs;
     }
-    
-    
+
+    public void validate(){
+        System.out.println(kurs);
+        System.out.println(lohntSich);
+        System.out.println(platform);
+        System.out.println(beibehalten);
+        
+    }
 }

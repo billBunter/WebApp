@@ -51,7 +51,9 @@ public class Controller extends HttpServlet {
             } else if(redirect.equals("index")){
                 accController.addToHistory(redirect);
                 response.sendRedirect(redirect+".html");
-            } else {
+            } else if (redirect.equals("evaluationForm")){
+                response.sendRedirect(redirect + ".xhtml");
+            }else{
                 if (redirect.equals("webapplicationen") || redirect.equals("english")) {
                     if (!accController.isRegistered()) {
                         response.sendRedirect("logon.jsp");
