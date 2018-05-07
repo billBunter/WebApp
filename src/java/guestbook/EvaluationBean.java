@@ -5,11 +5,21 @@
  */
 package guestbook;
 
+import guestbook.helper.EvaluationHelper;
+import guestbook.pojo.Evaluierung;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -62,11 +72,31 @@ public class EvaluationBean implements Serializable {
         this.kurs = kurs;
     }
 
-    public void validate(){
-        System.out.println(kurs);
-        System.out.println(lohntSich);
-        System.out.println(platform);
-        System.out.println(beibehalten);
-        
+    public void validate() {
+        if (kurs == null || lohntSich == null || beibehalten == null || platform == null) {
+            System.out.println("Nicht alles eingetragen");
+        } else {
+            String platformStr = "";
+            for (int i = 0; i < platform.length; i++) {
+                if (i > 0) {
+                    platformStr = platformStr + ";";
+                }
+                platformStr = platformStr + platform[i];
+            }
+            Evaluierung evaluierung = new Evaluierung(kurs, lohntSich, platformStr, beibehalten);
+            EvaluationHelper evaluationHelper = new EvaluationHelper();
+            evaluationHelper.insertEvaluation(evaluierung);
+            redirectToIndex();
+        }
+    }
+
+    private void redirectToIndex() {
+        try {
+            FacesContext fContext = FacesContext.getCurrentInstance();
+            ExternalContext extContext = fContext.getExternalContext();
+            extContext.redirect("index.html");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

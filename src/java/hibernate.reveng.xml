@@ -42,5 +42,6 @@ Contributor(s):
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="sql11230466"/>
   <table-filter match-name="blog"/>
+  <table-filter match-name="evaluierung"/>
   <table-filter match-name="account"/>
 </hibernate-reverse-engineering>

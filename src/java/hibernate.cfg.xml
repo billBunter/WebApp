@@ -49,6 +49,7 @@ Contributor(s):
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="guestbook/pojo/Evaluierung.hbm.xml"/>
     <mapping resource="guestbook/pojo/Blog.hbm.xml"/>
     <mapping resource="guestbook/pojo/Account.hbm.xml"/>
   </session-factory>

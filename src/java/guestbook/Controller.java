@@ -19,7 +19,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -46,7 +45,7 @@ public class Controller extends HttpServlet {
         if (request.getParameter("userId") == null) {
             //kommt nicht vom Login
             if (redirect == null) {
-                redirect = "home.html";
+                response.sendRedirect("index.html");
                 return;
             } else if(redirect.equals("index")){
                 accController.addToHistory(redirect);

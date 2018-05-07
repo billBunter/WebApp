@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 06.05.2018 18:00:33 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="guestbook.pojo.Evaluierung" table="evaluierung" catalog="sql11230466" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="kurs" type="string">
+            <column name="kurs" />
+        </property>
+        <property name="lohntSich" type="string">
+            <column name="lohntSich" />
+        </property>
+        <property name="platform" type="string">
+            <column name="platform" />
+        </property>
+        <property name="beibehalten" type="string">
+            <column name="beibehalten" />
+        </property>
+    </class>
+</hibernate-mapping>

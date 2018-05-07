@@ -1,5 +1,5 @@
 package guestbook.pojo;
-// Generated 02.05.2018 17:59:15 by Hibernate Tools 4.3.1
+// Generated 06.05.2018 18:00:33 by Hibernate Tools 4.3.1
 
 
 
