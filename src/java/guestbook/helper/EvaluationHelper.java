@@ -7,6 +7,9 @@ package guestbook.helper;
 
 import guestbook.HibernateUtil;
 import guestbook.pojo.Evaluierung;
+import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 /**
@@ -25,6 +28,18 @@ public class EvaluationHelper {
         session.beginTransaction();
         session.save(e);
         session.getTransaction().commit();
+    }
+    
+    public List<Evaluierung> getEvaluations(String kurs){
+        List<Evaluierung> eList = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            Query q = session.createQuery("from Evaluierung where kurs ='"+kurs+"'");
+            eList = q.list();
+        } catch (HibernateException e){
+            e.printStackTrace();
+        }
+        return eList;
     }
     
 }

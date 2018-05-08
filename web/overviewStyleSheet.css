@@ -1,0 +1,30 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 08.05.2018, 10:09:57
+    Author     : Billy
+*/
+.lohntSichTabelle {   
+    border-collapse:collapse;
+    border:1px solid #000000;
+}
+
+.lohntSichHeader {
+    text-align:center;
+    background:none repeat scroll 0 0 #B5B5B5;
+    border-bottom:1px solid #000000;  
+    padding:2px;
+}
+
+.lohntSichUngerade {
+    text-align:center;
+    background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.lohntSichGerade {
+    text-align:center;
+    background:none repeat scroll 0 0 #D3D3D3;
+}

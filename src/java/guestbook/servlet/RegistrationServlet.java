@@ -3,22 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package guestbook;
+package guestbook.servlet;
 
+import guestbook.helper.AccountHelper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Billy
+ * @author bill_
  */
-@WebServlet(name = "StartServlet", urlPatterns ={""})
-public class StartServlet extends HttpServlet {
+public class RegistrationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,7 +30,38 @@ public class StartServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.sendRedirect("index.html");
+
+        String userid = request.getParameter("userid");
+        String pw = request.getParameter("passwd");
+        String confpw = request.getParameter("confpasswd");
+        String rechte = request.getParameter("rechte");
+
+        if (!pw.equals(confpw)) {
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Confirming Password incorrect!!');");
+                out.println("location='index.html';");
+                out.println("</script>");
+            }
+        } else {
+            AccountHelper accountHelper = new AccountHelper();
+            if (!accountHelper.insertEntry(userid, pw, rechte)) {
+                try (PrintWriter out = response.getWriter()) {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('Userid already exists');");
+                    out.println("location='index.html';");
+                    out.println("</script>");
+                }
+            } else {
+                try (PrintWriter out = response.getWriter()) {
+                    out.println("<script type=\"text/javascript\">");
+                    out.println("alert('New Account hase been added');");
+                    out.println("location='index.html';");
+                    out.println("</script>");
+                }
+                response.sendRedirect("index.html");
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

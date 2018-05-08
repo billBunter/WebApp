@@ -41,18 +41,28 @@ public class Controller extends HttpServlet {
 
         String redirect = request.getParameter("redirect");
         AccountController accController = AccountController.getInstanz();
-        
+
         if (request.getParameter("userId") == null) {
             //kommt nicht vom Login
             if (redirect == null) {
                 response.sendRedirect("index.html");
                 return;
-            } else if(redirect.equals("index")){
+            } else if (redirect.equals("index")) {
                 accController.addToHistory(redirect);
-                response.sendRedirect(redirect+".html");
-            } else if (redirect.equals("evaluationForm")){
-                response.sendRedirect(redirect + ".xhtml");
-            }else{
+                response.sendRedirect(redirect + ".html");
+            } else if (redirect.equals("evaluationForm")) {
+                if (accController.getAccount() == null) {
+                    sendAlert("Sie sind nicht angemeldet", response);
+                    response.sendRedirect("home.html");
+                    return;
+                } else {
+                    if (accController.getAccount().getRechte().equals("student")) {
+                        response.sendRedirect(redirect + ".xhtml");
+                    } else {
+                        response.sendRedirect("evaluationOverview.xhtml");
+                    }
+                }
+            } else {
                 if (redirect.equals("webapplicationen") || redirect.equals("english")) {
                     if (!accController.isRegistered()) {
                         response.sendRedirect("logon.jsp");
@@ -72,7 +82,7 @@ public class Controller extends HttpServlet {
                         response.sendRedirect("index.html");
                         return;
                     }
-                } else if (redirect.equals("history")){
+                } else if (redirect.equals("history")) {
                     accController.addToHistory(redirect);
                     response.sendRedirect(redirect + ".html");
                 }
@@ -105,10 +115,10 @@ public class Controller extends HttpServlet {
     private void sendAlert(String alert, HttpServletResponse response) {
         try (PrintWriter out = response.getWriter()) {
             out.println("<script type=\"text/javascript\">");
-            out.println("alert('"+ alert +"');");
+            out.println("alert('" + alert + "');");
             out.println("location='index.html';");
             out.println("</script>");
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -152,5 +162,4 @@ public class Controller extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-   
 }

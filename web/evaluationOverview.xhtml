@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Select Kurs</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <div>
+            <h1>Wähle einen Kurs aus.</h1>
+            <h:form>
+                <h:outputLabel for="kurs">Select the Course you want to exsamin: </h:outputLabel>
+                <br />
+                <h:selectOneMenu id="kurs" value="#{selectOverviewBean.kurs}">
+                    <f:selectItem itemValue="english"  itemLabel="English"/>
+                    <f:selectItem itemValue="webApp" itemLabel="Webapplication"/>
+                </h:selectOneMenu>
+                <h:commandButton value="Submit">
+                    <f:ajax execute="@form" render="@all"
+                            listener="#{selectOverviewBean.doTheThing()}" />
+                </h:commandButton>
+            </h:form>
+            <p><a href="index.html">Hier</a> kommen sie zurück zur startseite.</p>
+        </div>
+    </h:body>
+</html>

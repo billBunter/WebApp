@@ -17,6 +17,7 @@ public class AccountController {
     private static AccountController instance;
     private Account account;
     private SessionManager sessionManager;
+    private String whatOverview;
     
     private AccountController(){
     }
@@ -60,5 +61,21 @@ public class AccountController {
     public List<String> getHistory(){
         return sessionManager.getHistory();
     }
+
+    public String getWhatOverview() {
+        return whatOverview;
+    }
+
+    public void setWhatOverview(String whatOverview) {
+        this.whatOverview = whatOverview;
+    }
+
+    public SessionManager getSessionManager() {
+        return sessionManager;
+    }
+    
+    
+    
+    
     
 }

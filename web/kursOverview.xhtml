@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns = "http://www.w3.org/1999/xhtml"   
+      xmlns:h = "http://java.sun.com/jsf/html"
+      xmlns:f = "http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Kurs Overview</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name = "overviewStyleSheet.css"  /> 
+    </h:head>
+    <h:body>
+        <div align="center">
+            <h1>Overview</h1>
+            <p><a href="index.html">Hier</a> kommen sie zurück zur startseite.</p>
+            <p><a href="evaluationOverview.xhtml">Hier</a> können sie sich auch andere Kurse anschauen.</p>
+            <h:form>
+                <h:outputFormat>Der duchschnitt ob sich die Vorlesung lohnt is: #{kursOverviewDataBean.avg}</h:outputFormat>
+                <br></br>
+                <h:dataTable value="#{kursOverviewDataBean.evaluirungen}" var="evaluierung"
+                             styleClass="lohntSichTabelle"
+                             headerClass="lohntSichHeader"
+                             rowClasses="lohntSichGerade,lohntSichUngerade">
+                    <h:column>
+                        <f:facet name="header">Was beibehalten werden soll!</f:facet>
+                            #{evaluierung.beibehalten}
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+    </h:body>
+</html>

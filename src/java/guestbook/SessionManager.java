@@ -29,7 +29,7 @@ public class SessionManager {
 	Date date = new Date();
         String time = dateFormat.format(date);        
         
-        history.add(time + ";" + url);
+        history.add(time + "--" + url);
     }
     
     public List<String> getHistory(){

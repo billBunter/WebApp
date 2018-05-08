@@ -3,23 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package guestbook;
+package guestbook.beans;
 
 import guestbook.helper.EvaluationHelper;
 import guestbook.pojo.Evaluierung;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.FacesValidator;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -73,8 +66,8 @@ public class EvaluationBean implements Serializable {
     }
 
     public void validate() {
-        if (kurs == null || lohntSich == null || beibehalten == null || platform == null) {
-            System.out.println("Nicht alles eingetragen");
+        if (kurs == null || lohntSich == null || beibehalten == null || platform.length == 0) {
+            redirectTo("fehlermeldungEvaluierung.html");
         } else {
             String platformStr = "";
             for (int i = 0; i < platform.length; i++) {
@@ -86,15 +79,15 @@ public class EvaluationBean implements Serializable {
             Evaluierung evaluierung = new Evaluierung(kurs, lohntSich, platformStr, beibehalten);
             EvaluationHelper evaluationHelper = new EvaluationHelper();
             evaluationHelper.insertEvaluation(evaluierung);
-            redirectToIndex();
+            redirectTo("index.html");
         }
     }
 
-    private void redirectToIndex() {
+    private void redirectTo(String url) {
         try {
             FacesContext fContext = FacesContext.getCurrentInstance();
             ExternalContext extContext = fContext.getExternalContext();
-            extContext.redirect("index.html");
+            extContext.redirect(url);
         } catch (IOException e) {
             e.printStackTrace();
         }
