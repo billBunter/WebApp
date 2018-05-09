@@ -41,6 +41,14 @@ public class HistoryServlet extends HttpServlet {
             RequestDispatcher rd = getServletContext().getRequestDispatcher("/history.jsp");
             rd.forward(request, response);
         } else {
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<script type=\"text/javascript\">");
+                out.println("alert('Sie sind nicht angemeldet!');");
+                out.println("location='index.html';");
+                out.println("</script>");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             response.sendRedirect("index.html");
         }
     }

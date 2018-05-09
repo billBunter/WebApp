@@ -23,10 +23,7 @@ and open the template in the editor.
             <h:form>
                 <h:outputFormat>Der duchschnitt ob sich die Vorlesung lohnt is: #{kursOverviewDataBean.avg}</h:outputFormat>
                 <br></br>
-                <h:dataTable value="#{kursOverviewDataBean.evaluirungen}" var="evaluierung"
-                             styleClass="lohntSichTabelle"
-                             headerClass="lohntSichHeader"
-                             rowClasses="lohntSichGerade,lohntSichUngerade">
+                <h:dataTable value="#{kursOverviewDataBean.evaluirungen}" var="evaluierung">
                     <h:column>
                         <f:facet name="header">Was beibehalten werden soll!</f:facet>
                             #{evaluierung.beibehalten}

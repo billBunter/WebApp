@@ -35,7 +35,7 @@ public class KursOverviewDataBean {
         EvaluationHelper eHelper = new EvaluationHelper();
         String kurs = accController.getWhatOverview();
         evaluirungen = eHelper.getEvaluations(kurs);
-        int durchschnitt = 0;
+        double durchschnitt = 0.0;
         for (Evaluierung e : evaluirungen){
             switch (e.getLohntSich()){
                 case "one":

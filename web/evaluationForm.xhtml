@@ -15,8 +15,9 @@ and open the template in the editor.
     <h:body>
         <div align="center">
             <h1>Evaluation Form</h1>
+            <p>Mit Stern (*) makiert sind verpflichtend!</p>
             <h:form>
-                <h:outputLabel for="kurs">Select the Course: </h:outputLabel>
+                <h:outputLabel for="kurs">Select the Course:* </h:outputLabel>
                 <br />
                 <h:selectOneMenu id="kurs" value="#{evaluationBean.kurs}">
                     <f:selectItem itemValue="english"  itemLabel="English"/>
@@ -24,7 +25,7 @@ and open the template in the editor.
                 </h:selectOneMenu><br />
                 <h:outputLabel for="lohntSich">
                     Wenn Sie sich auf den Inhalt konzentrieren, wie <br />
-                    lohnend war der Besuch der Lehrveranstaltung bis her?<br />
+                    lohnend war der Besuch der Lehrveranstaltung bis her?*<br />
                     (1 überhaupt nicht 5 lohnt sich sehr)<br />
                 </h:outputLabel>
                 <h:selectOneRadio id="lohntSich" value="#{evaluationBean.lohntSich}">

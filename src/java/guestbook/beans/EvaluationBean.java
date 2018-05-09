@@ -66,7 +66,7 @@ public class EvaluationBean implements Serializable {
     }
 
     public void validate() {
-        if (kurs == null || lohntSich == null || beibehalten == null || platform.length == 0) {
+        if (kurs == null || lohntSich == null) {
             redirectTo("fehlermeldungEvaluierung.html");
         } else {
             String platformStr = "";
@@ -75,6 +75,9 @@ public class EvaluationBean implements Serializable {
                     platformStr = platformStr + ";";
                 }
                 platformStr = platformStr + platform[i];
+            }
+            if (beibehalten == null){
+                beibehalten = "";
             }
             Evaluierung evaluierung = new Evaluierung(kurs, lohntSich, platformStr, beibehalten);
             EvaluationHelper evaluationHelper = new EvaluationHelper();
